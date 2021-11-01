@@ -1,0 +1,68 @@
+[
+    {
+        "id": 1,
+        "name":"鹅卵石",
+        "effct":{
+        },
+        "description":"平平无奇，在河边经常能捡到",
+        "limit": null,
+        "rarity":1
+    }, 
+    {
+        "id": 2,
+        "name":"金币",
+        "effct":{
+        },
+        "description":"原有的花纹和镌刻的文字都早已被磨损得模糊不清",
+        "limit": null,
+        "rarity":1
+    }, 
+    {
+        "id": 3,
+        "name":"灌铅骰子",
+        "effct":{
+        },
+        "description":"你能很轻易地掷出你想要的数字",
+        "limit": null,
+        "rarity":1
+    }, 
+    {
+        "id": 4,
+        "name":"金枝",
+        "effct":{
+        },
+        "description":"这根枝条通过特定角度能看到闪着微光，透露出神秘的气息",
+        "limit": null,
+        "rarity":1
+    },  
+    {
+        "id": 5,
+        "name":"锈剑",
+        "effct":{
+            "strenth":"1"
+        },
+        "description":"生锈很严重，勉强还维持着剑的形状",
+        "limit": null,
+        "rarity":1
+    }, 
+    {
+        "id": 6,
+        "name":"布甲",
+        "effct":{
+            "damage":"-1"
+        },
+        "description":"再破一点就只能算是布片了",
+        "limit": null,
+        "rarity":1
+    }, 
+    {
+        "id": 7,
+        "name":"蜘蛛丝",
+        "effct":{
+            "town-scroll":"no lost equipment for death"
+        },
+        "description":"非常有韧性，怎么扯都扯不断",
+        "limit": null,
+        "rarity":1
+    }   
+]

@@ -1,0 +1,68 @@
+[{
+"id":1,    
+"type":"must",
+"repeat": false,
+"pre_attribute_require":{
+    },
+"layer_chance":{
+    },
+"happen_rate": "must",
+"pre_event_require":[],
+"pre_craft_reuqire":[],
+"start_text":"'`当你结束了一天疲惫的工作回到独居的家中，`<br/>`打开家门却意外地发现自己的爱犬 *DogName `<br/>`没有像往常一样晃着尾巴出现在门口迎接你。`<br/>`只见地上留了一张质地很古怪的便签：`<br/>很抱歉没办法提前告知，<br/>但哈迪斯大人要求我尽快将*DogName带回冥界。<br/>如您对此有任何意见，欢迎您拜访以下地址与哈迪斯大人当面沟通…… <br/>——塔纳托斯^2000'",
+"list":[
+        {
+            "key":"a",
+            "content":"a. 我有一种不祥的预感，不然就算了？",
+            "result":"quitGame"
+        },
+        {
+            "key":"b",
+            "content":"b. 我有计划了。赶紧准备一下就前往冥界。",
+            "result":"getEquipment"
+        },
+        {
+            "key":"c",
+            "content":"什么鬼？立刻出发！",
+            "result":"playGame"
+        }        
+    ]   
+},{
+"id":2,    
+"type":"must",
+"repeat": false,
+"pre_attribute_require":{
+    },
+"layer_chance":{
+    },
+"happen_rate": "must",
+"pre_event_require":[],
+"pre_craft_reuqire":[],
+"start_text":"'`令人意外的是便签上的地址并不难找，看上去似乎是个已经废弃许久的地下建筑。`,`你走了进去，光线非常微弱，几乎看不到什么东西，只能听见远处有湍急的水流声。`^2000'",
+"pre_text":"墙角摆着一个陶罐，看上去有些不寻常。^2000",
+"list":[
+        {
+            "key":"a",
+            "content":"a. 踢爆它！",
+            "check":[{
+                "function":"check('STR','1D6',12)",
+                "success":"",
+                "fail":{"text":"你扭伤了脚趾。","effect":{"attr":"HP","num":"-1"}}
+            },{
+                "function":"check('LUK','1D6',100)",
+                "success":"有一个闪闪发光的玩意儿掉了出来，你捡起来发现是一枚看不出年代的金币",
+                "fail":"",
+                "craft":{"craft_id":2,"name":"金币","description":"原有的花纹和镌刻的文字都早已被磨损得模糊不清"}
+            }
+            ]
+        },
+        {
+            "key":"b",
+            "content":"b. 还是抓紧赶路吧。",
+            "result":"playGame"
+        }    
+    ]   
+}
+
+
+]
