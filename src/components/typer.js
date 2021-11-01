@@ -82,10 +82,10 @@ const TypedReactHooksDemo = () => {
         return typed.current
   }
 
-  function makeStr(i){
-    console.log("gte",packageD[i].happen_rate)
+  function makeStr(ele){
+    console.log("makeStr",ele)
     // freshStr([packageD[i].list[0],packageD[i].list[1],packageD[i].list[2]])
-    return freshStr(["sdfadf","sdfsdf"])
+    return [ele.start_text,ele.pre_text]
   }
 
   const handleKeyPress = (event) => {
@@ -113,7 +113,8 @@ const TypedReactHooksDemo = () => {
         console.log(ele.id)
         typed.current.destroy()
         // typed.current = makeStr(i)
-        typed.current = freshStr(["sdfadf","sdfsdf"])
+        // typed.current = freshStr(["sdfadf","sdfsdf"])
+        typed.current = freshStr(makeStr(ele))
         typed.current.reset()
         switch ((event.key).toString()) {
             case "a":
