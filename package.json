@@ -1,6 +1,6 @@
 {
- "homepage": "http://jhfnetboy.github.io/game-engine-logic",
- "name": "logic",
+ "homepage": "http://jhfnetboy.github.io/engine-pub",
+ "name": "engine",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
