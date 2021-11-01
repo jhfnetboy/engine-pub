@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/game-engine-logic/static/css/main.a617e044.chunk.css",
+    "main.js": "/game-engine-logic/static/js/main.c1fd4c83.chunk.js",
+    "main.js.map": "/game-engine-logic/static/js/main.c1fd4c83.chunk.js.map",
+    "runtime-main.js": "/game-engine-logic/static/js/runtime-main.eef5f2d1.js",
+    "runtime-main.js.map": "/game-engine-logic/static/js/runtime-main.eef5f2d1.js.map",
+    "static/js/2.697c57ae.chunk.js": "/game-engine-logic/static/js/2.697c57ae.chunk.js",
+    "static/js/2.697c57ae.chunk.js.map": "/game-engine-logic/static/js/2.697c57ae.chunk.js.map",
+    "static/js/3.29d24356.chunk.js": "/game-engine-logic/static/js/3.29d24356.chunk.js",
+    "static/js/3.29d24356.chunk.js.map": "/game-engine-logic/static/js/3.29d24356.chunk.js.map",
+    "index.html": "/game-engine-logic/index.html",
+    "static/css/main.a617e044.chunk.css.map": "/game-engine-logic/static/css/main.a617e044.chunk.css.map",
+    "static/js/2.697c57ae.chunk.js.LICENSE.txt": "/game-engine-logic/static/js/2.697c57ae.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.eef5f2d1.js",
+    "static/js/2.697c57ae.chunk.js",
+    "static/css/main.a617e044.chunk.css",
+    "static/js/main.c1fd4c83.chunk.js"
+  ]
+}
