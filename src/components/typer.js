@@ -1,6 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
 import Typed from 'typed.js';
-import useNetwork from '../hooks/useNetwork.ts';
 import packageD from '../game-data/package-base.json';
 import craft from '../game-data/craft.json';
 
@@ -98,8 +97,8 @@ const TypedReactHooksDemo = () => {
     // console.log(event.keyCode);
     setLastPressedKey(event.key);
     // console.log("Now",walker)
-    if((event.key).toString()=='q'){
-        console.log("End game",walker)
+    if((event.key).toString()==='q'){
+        // console.log("End game",walker)
         typed.current.destroy()
         typed.current = freshStr(["你按下了Q","退出游戏^1500"])
         typed.current.reset()
@@ -123,8 +122,9 @@ const TypedReactHooksDemo = () => {
         typed.current.reset()
         switch ((event.key).toString()) {
             case "a":
-                console.log(ele.pre_text)
-                console.log(ele.start_text)
+                // console.log(ele.pre_text)
+                // console.log(ele.start_text)
+                console.log(ele.id)
                 break;
             case "b":
                 console.log("i am b touched")

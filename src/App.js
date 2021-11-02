@@ -47,7 +47,7 @@ function App() {
               </tr>
               <tr><td>Progress</td><td colSpan={3}>{loadGame().progress}</td></tr>
               </tbody>
-              </table>
+            </table>
         </span>
         <div>
         <button onClick={saveGame()}>Start</button>
