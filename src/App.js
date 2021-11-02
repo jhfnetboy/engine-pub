@@ -8,6 +8,7 @@ function App() {
     <div className="App">
       <header className="App-header">
         <span><table border="1">
+          <tbody>
               <tr>
               <td>STR</td>
               <td>DEX</td>
@@ -24,12 +25,14 @@ function App() {
               <td>{getWalker().CHA}</td>
               <td>{getWalker().LUK}</td>                            
               </tr>
+          </tbody>              
               </table>
         </span>
       <span id="react-root" className="text-white ml-40 mr-40 text-xl font-bold border-8 border-white">
       <TypedReactHooksDemo />
       </span>
       <span><table border="1">
+            <tbody>
               <tr>
               <td>Start</td>
               <td>Layer</td>
@@ -43,6 +46,7 @@ function App() {
               <td>{loadGame().boss}</td>                     
               </tr>
               <tr><td>Progress</td><td colSpan={3}>{loadGame().progress}</td></tr>
+              </tbody>
               </table>
         </span>
         <div>

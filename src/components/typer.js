@@ -146,7 +146,6 @@ const TypedReactHooksDemo = () => {
   return (
     <div className="wrap">
       <h1>What the hell?</h1>
-
       <div className="type-wrap">
         <span style={{ whiteSpace: 'pre' }} ref={el} />
       </div>
