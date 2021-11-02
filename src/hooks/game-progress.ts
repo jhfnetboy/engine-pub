@@ -99,6 +99,26 @@ const saveWalker = (walker:object) => {
         throw err
       }
 }
+const saveGame = (gp: typeof _gameProgress) => {
+  try {
+      localStorage.setItem("gameProgress", JSON.stringify(_gameProgress))
+        console.log("data: ", _gameProgress)
+      } catch (err) {
+        console.log("Error: ", err)
+        throw err
+      }
+}
+
+const loadGame = () => {
+  try {
+      const gp = localStorage.getItem("gameProgress")
+        console.log("data: ", gp)
+        return gp
+      } catch (err) {
+        console.log("Error: ", err)
+        throw err
+      }
+  }
 
 const getWalker = () => {
   try {
@@ -110,7 +130,7 @@ const getWalker = () => {
       }
       return walker
   }
-return [saveWalker, getWalker, loadWalker] as const
+return [saveWalker, getWalker, loadWalker,saveGame, loadGame] as const
 }
 
 export default useGameControl

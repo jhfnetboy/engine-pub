@@ -151,16 +151,12 @@ const TypedReactHooksDemo = () => {
         <span style={{ whiteSpace: 'pre' }} ref={el} />
       </div>
       {/* <button onClick={nextStr()}>get data</button><br /> */}
-      <button onClick={() => typed.current.toggle()}>Toggle</button>
+      {/* <button onClick={() => typed.current.toggle()}>Toggle</button>
       <button onClick={() => typed.current.start()}>Start</button>
       <button onClick={() => typed.current.stop()}>Stop</button>
       <button onClick={() => typed.current.reset()}>Reset</button>
-      <button onClick={() => typed.current.destroy()}>Destroy</button>
+      <button onClick={() => typed.current.destroy()}>Destroy</button> */}
     </div>
   );
 }
 export default TypedReactHooksDemo;
-// ReactDOM.render(
-// 	<TypedReactHooksDemo />,
-//   document.getElementById('react-root')
-// );
