@@ -9,12 +9,12 @@ import craft from '../game-data/craft.json';
 const str = [
     '`当你结束了一天疲惫的工作回到独居的家中，`<br/>`打开家门却意外地发现自己的爱犬 *DogName `<br/>`没有像往常一样晃着尾巴出现在门口迎接你。`<br/>`只见地上留了一张质地很古怪的便签：`<br/>很抱歉没办法提前告知，<br/>但哈迪斯大人要求我尽快将*DogName带回冥界。<br/>如您对此有任何意见，欢迎您拜访以下地址与哈迪斯大人当面沟通…… <br/>——塔纳托斯 <br/><font color="gray">按空格继续游戏 按q退出游戏</font>^2000',
   ]
-
 const TypedReactHooksDemo = () => {
 	const el = React.useRef(null);
 	const typed = React.useRef(null);
     // const [fetchWalkerName] = useWalker({ web3 })
     const [lastPressedKey, setLastPressedKey] = useState()
+    const [ele, setEle] = useState()
     // "1.STR力量：3D6 （3-18）
     // 2.DEX敏捷：3D6 （3-18）
     // 3.CON体质：3D6 （3-18）
@@ -40,7 +40,6 @@ const TypedReactHooksDemo = () => {
     }
     const [walker, setWalker] = useState(_walker)
     const [currentStr, setCurrentStr] = useState(str)
-
     const handleFetch = async () => {
         // fetchWalkerName(walkerID).then(setWalker).catch(showAppMsg)
       }
@@ -83,15 +82,20 @@ const TypedReactHooksDemo = () => {
   }
 
   function makeStr(ele){
-    console.log("makeStr",ele)
+    // console.log("makeStr",ele)
     // freshStr([packageD[i].list[0],packageD[i].list[1],packageD[i].list[2]])
-    return [ele.start_text,ele.pre_text]
+    const astr = []
+    astr.push(ele.start_text)
+    astr.push(ele.pre_text)
+    // ele.list.forEach(function (item){astr.push(item)})
+    console.log(astr)
+    return astr
   }
 
   const handleKeyPress = (event) => {
       //check which event id now
     //   console.log("pack",packageD.length)
-    console.log(event.keyCode);
+    // console.log(event.keyCode);
     setLastPressedKey(event.key);
     // console.log("Now",walker)
     if((event.key).toString()=='q'){
@@ -109,7 +113,8 @@ const TypedReactHooksDemo = () => {
   
   function loopData(event){
     packageD.forEach(function(ele){
-        console.log(ele)
+      setEle(ele)
+        // console.log(ele)
         console.log(ele.id)
         typed.current.destroy()
         // typed.current = makeStr(i)
