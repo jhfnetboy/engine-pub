@@ -102,43 +102,46 @@ const TypedReactHooks = () => {
   };
   
   function loopData(event){
-    switch ((event.key).toString()) {
-      case "a":
-          console.log('you pressed ',event.key)
-          SELETED = true
-          freshStr(["你选择了a，不准备开启一段为小狗的冒险，游戏结束"])
-         localStorage.setItem("gameProgress",JSON.stringify({  "start": "yes", 
-         "layer": 0, 
-         "contribution": 0,
-        "progress":"-",
-        "boss":false}))
-         console.log('after select',localStorage.getItem("gameProgress"))
-          break;
-      case "b":
-          console.log("i am b touched")
-          SELETED = true
-          freshStr(["你选择了b，你装备了你的帽子和风衣，冒险开始了"])
-          localStorage.setItem("gameProgress",JSON.stringify({  "start": "yes", 
-          "layer": 0, 
-          "contribution": 0,
-         "progress":"-",
-         "boss":false}))
-          console.log('after select',localStorage.getItem("gameProgress"))          
-          break;
-      case "c":
-          console.log("i am c touched")
-          SELETED = true
-          freshStr(["你选择了c，你无限估计背包，直接上路开始冒险了"])
-          localStorage.setItem("gameProgress",JSON.stringify({  "start": "yes", 
-          "layer": 0, 
-          "contribution": 0,
-         "progress":"-",
-         "boss":false}))
-          console.log('after select',localStorage.getItem("gameProgress"))          
-          break;
-      default :
-          console.log("")   
-      }    
+    if(SELETED===false){
+      switch ((event.key).toString()) {
+        case "a":
+            console.log('you pressed ',event.key)
+            SELETED = true
+            freshStr(["你选择了a，不准备开启一段为小狗的冒险，游戏结束"])
+           localStorage.setItem("gameProgress",JSON.stringify({  "start": "yes", 
+           "layer": 0, 
+           "contribution": 0,
+          "progress":"-",
+          "boss":false}))
+           console.log('after select',localStorage.getItem("gameProgress"))
+            break;
+        case "b":
+            console.log("i am b touched")
+            SELETED = true
+            freshStr(["你选择了b，你装备了你的帽子和风衣，冒险开始了"])
+            localStorage.setItem("gameProgress",JSON.stringify({  "start": "yes", 
+            "layer": 0, 
+            "contribution": 0,
+           "progress":"-",
+           "boss":false}))
+            console.log('after select',localStorage.getItem("gameProgress"))          
+            break;
+        case "c":
+            console.log("i am c touched")
+            SELETED = true
+            freshStr(["你选择了c，你无限估计背包，直接上路开始冒险了"])
+            localStorage.setItem("gameProgress",JSON.stringify({  "start": "yes", 
+            "layer": 0, 
+            "contribution": 0,
+           "progress":"-",
+           "boss":false}))
+            console.log('after select',localStorage.getItem("gameProgress"))          
+            break;
+        default :
+            console.log("")   
+        }    
+  
+    }
       // const gameProgress = loadGame()
       const gameProgress = JSON.parse(localStorage.getItem("gameProgress"))
       console.log('progress:',gameProgress)
