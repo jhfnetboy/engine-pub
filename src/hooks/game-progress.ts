@@ -22,18 +22,15 @@ function getAttribute(diceTime: number,addNum: number){
 }
 
 function useGameControl() {
-  const [gamePoint, setGamePoint] = useState(_gameProgress)
+  const [gameProgress, setGameProgress] = useState(_gameProgress)
   const [walker, setWalker] = useState(_walker)
   localStorage.setItem("myWalker", JSON.stringify(_walker))
-//   const connect = async () => {
-//     setWeb3(web3)
-//     console.log(web3)
-//   }
-//   return  connect
+  localStorage.setItem("gameProgress", JSON.stringify(_gameProgress))
 
 useEffect(() => {
   localStorage.setItem("myWalker", JSON.stringify(_walker))
-  }, [walker])
+  localStorage.setItem("gameProgress", JSON.stringify(_gameProgress))
+  }, [walker,gameProgress])
 
 // const saveGamePoint 
 
@@ -75,7 +72,7 @@ useEffect(() => {
 const loadWalker = (walkerID:string) => {
   try {
       localStorage.getItem("walkerName",)
-        console.log("data: ", walkerID)
+        console.log("walkerID: ", walkerID)
         return walkerID
       } catch (err) {
         console.log("Error: ", err)
@@ -102,7 +99,7 @@ const loadWalker = (walkerID:string) => {
 const saveGame = (gp: typeof _gameProgress) => {
   try {
       localStorage.setItem("gameProgress", JSON.stringify(_gameProgress))
-        console.log("data: ", _gameProgress)
+        console.log("gameProgress to save: ", _gameProgress)
       } catch (err) {
         console.log("Error: ", err)
         throw err
@@ -112,7 +109,7 @@ const saveGame = (gp: typeof _gameProgress) => {
 const loadGame = () => {
   try {
       const gp = localStorage.getItem("gameProgress")
-        console.log("data: ", gp)
+        console.log("gameProgress to load: ", gp)
         return gp
       } catch (err) {
         console.log("Error: ", err)

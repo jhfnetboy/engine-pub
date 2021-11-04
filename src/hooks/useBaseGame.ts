@@ -3,7 +3,8 @@ import { useEffect, useState } from "react";
 // const playWalker = localStorage.getItem("nowWalker")
 // playWalker ? playWalker :'no player'
 // const ropstenAddress = "0xAf0eDf79D9bb4cC0481ddC0e157c906Fc5384FB8"
-const CONTRACT_ADDRESS = "0x238e289247CD6122EdCd65216A9b8bE4e8f963BA"
+// const CONTRACT_ADDRESS = "0x238e289247CD6122EdCd65216A9b8bE4e8f963BA"
+const gameProgress = {}
 
 function useBaseGame() {
   const [nowWalker, setNowWalker] = useState<object>()
@@ -63,6 +64,17 @@ function useBaseGame() {
         }
   }
 
+  const loadGame = () => {
+    try {
+        const gp = localStorage.getItem("gameProgress",)
+          console.log("data: ", gp)
+          return gp
+        } catch (err) {
+          console.log("Error: ", err)
+          throw err
+        }
+  }
+
   //存储进度、用户对象
 //   attributes = {'STR':2,'DEX':4,'CON':5,'INT':4,'CHA':3,'LUK':7}
 //   user =[{"walkerID":123, "walkerName":'player1',"walkerID":223, "attributes": attributes},
@@ -80,6 +92,15 @@ function useBaseGame() {
         }
   }
 
+  const saveGame = (gp: object) => {
+    try {
+        localStorage.setItem("gameProgress", JSON.stringify(gp))
+          console.log("data: ", gp)
+        } catch (err) {
+          console.log("Error: ", err)
+          throw err
+        }
+  }
 
 //   exitCheck
 // 退出检查
@@ -92,7 +113,7 @@ function useBaseGame() {
 // 2.打死妖怪了，存储下时间，获得物品，功勋值
 
   
-  return [initialUser, loadWalker] as const
+  return [initialUser, loadWalker, loadGame, saveGame] as const
 }
 
 export default useBaseGame
