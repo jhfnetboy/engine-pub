@@ -30,7 +30,7 @@ const TypedReactHooksDemo = () => {
     }
 
     function getAttribute(diceTime,addNum){
-        const rNum = addNum + diceTime * (Math.floor((Math.random()*6)))
+        const rNum = addNum + diceTime * (Math.floor((Math.random()*3)))
          if((rNum)>3 && (rNum <=18)){
             return rNum;
          }else{

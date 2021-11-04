@@ -3,7 +3,9 @@ import useGameControl from "./hooks/game-progress"
 import './App.css';
 
 function App() {
-  const [saveWalker, getWalker, loadWalker,saveGame,loadGame] = useGameControl()
+  const [setWalker, getWalker,saveGame,loadGame] = useGameControl()
+  const walkerAttribute = getWalker()
+  const gameProgress = loadGame()
   return (
     <div className="App">
       <header className="App-header">
@@ -18,12 +20,12 @@ function App() {
               <td>LUC</td>                            
               </tr>
               <tr>
-              <td>{getWalker().STR}</td>
-              <td>{getWalker().DEX}</td>
-              <td>{getWalker().CON}</td>
-              <td>{getWalker().INT}</td>
-              <td>{getWalker().CHA}</td>
-              <td>{getWalker().LUK}</td>                            
+              <td>{walkerAttribute.STR}</td>
+              <td>{walkerAttribute.DEX}</td>
+              <td>{walkerAttribute.CON}</td>
+              <td>{walkerAttribute.INT}</td>
+              <td>{walkerAttribute.CHA}</td>
+              <td>{walkerAttribute.LUK}</td>                            
               </tr>
           </tbody>              
               </table>
@@ -40,18 +42,18 @@ function App() {
               <td>BOSS</td>                           
               </tr>
               <tr>
-              <td>{loadGame().start}</td>
-              <td>{loadGame().layer}</td>
-              <td>{loadGame().contribution}</td>
-              <td>{loadGame().boss}</td>                     
+              <td>{gameProgress.start}</td>
+              <td>{gameProgress.layer}</td>
+              <td>{gameProgress.contribution}</td>
+              <td>{gameProgress.boss}</td>                     
               </tr>
-              <tr><td>Progress</td><td colSpan={3}>{loadGame().progress}</td></tr>
+              <tr><td>Progress</td><td colSpan={3}>{gameProgress.progress}</td></tr>
               </tbody>
             </table>
         </span>
         <div>
-        <button onClick={saveGame()}>Start</button>
-        <button onClick={saveGame()}>Stop</button>
+        <button onClick={()=>saveGame()}>Start</button>
+        <button onClick={()=>saveGame()}>Stop</button>
         </div>
       </header>
     </div>

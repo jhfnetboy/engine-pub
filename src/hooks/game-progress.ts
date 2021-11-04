@@ -69,16 +69,16 @@ useEffect(() => {
 // 改变了则刷新Walker信息
 //需要wasm的游戏引擎开发完成，输出hash验证，和本地hash对比 TODO
 //每次存储，都要向引擎请求一个hash值，存储到本地，因此所有的obj，都要有一个_hash字段 TODO
-const loadWalker = (walkerID:string) => {
-  try {
-      localStorage.getItem("walkerName",)
-        console.log("walkerID: ", walkerID)
-        return walkerID
-      } catch (err) {
-        console.log("Error: ", err)
-        throw err
-      }
-}
+// const loadWalker = (walkerID:string) => {
+//   try {
+//       localStorage.getItem("walkerName",)
+//         console.log("walkerID: ", walkerID)
+//         return walkerID
+//       } catch (err) {
+//         console.log("Error: ", err)
+//         throw err
+//       }
+// }
 
 //存储进度、用户对象
 //   attributes = {'STR':2,'DEX':4,'CON':5,'INT':4,'CHA':3,'LUK':7}
@@ -121,13 +121,13 @@ const getWalker = () => {
   try {
       const walker = localStorage.getItem("myWalker")
         // console.log("data: ", walker)
+        return JSON.parse(walker!)
       } catch (err) {
         console.log("Error: ", err)
         throw err
       }
-      return walker
   }
-return [setWalker, getWalker, loadWalker,saveGame, loadGame] as const
+return [setWalker, getWalker, saveGame, loadGame] as const
 }
 
 export default useGameControl
