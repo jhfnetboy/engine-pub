@@ -5,11 +5,11 @@ import useGameData from "../hooks/game-data"
 
 // import packageD from '../game-data/package-base.json';
 
-
+let SELETED = false
 // interface property {str: string[]}
 // const props
 const str = [
-    '`当你结束了一天疲惫的工作回到独居的家中，`<br/>`打开家门却意外地发现自己的爱犬 *DogName `<br/>`没有像往常一样晃着尾巴出现在门口迎接你。`<br/>`只见地上留了一张质地很古怪的便签：`<br/>很抱歉没办法提前告知，<br/>但哈迪斯大人要求我尽快将*DogName带回冥界。<br/>如您对此有任何意见，欢迎您拜访以下地址与哈迪斯大人当面沟通…… <br/>——塔纳托斯 <br/><font color="gray">按空格继续游戏 按q退出游戏</font>^2000',
+    '`当你结束了一天疲惫的工作回到独居的家中，`<br/>`打开家门却意外地发现自己的爱犬 *DogName `<br/>`没有像往常一样晃着尾巴出现在门口迎接你。`<br/>`只见地上留了一张质地很古怪的便签：`<br/>很抱歉没办法提前告知，<br/>但哈迪斯大人要求我尽快将*DogName带回冥界。<br/>如您对此有任何意见，欢迎您拜访以下地址与哈迪斯大人当面沟通…… <br/>——塔纳托斯 <br/><font color="gray">按 q退出游戏 其他任意键继续游戏 </font>^2000',
   ]
 const TypedReactHooks = () => {
 
@@ -107,26 +107,29 @@ const TypedReactHooks = () => {
         return null
     }else{
         console.log("continue game")
-        if(event.keyCode==32){
-          typed.current.destroy() 
-        }else{
+        // if(event.keyCode==32){
+          // typed.current.destroy() 
           typed.current.destroy() 
           loopData(event) 
-        }
     } 
   };
   
   function loopData(event){
-    console.log(event.key)
     switch ((event.key).toString()) {
       case "a":
-          console.log('sssss',event.key)
+          console.log('you pressed ',event.key)
+          SELETED = true
+          freshStr(["你选择了a，不准备开启一段为小狗的冒险，游戏结束"])
           break;
       case "b":
           console.log("i am b touched")
+          SELETED = true
+          freshStr(["你选择了b，你装备了你的帽子和风衣，冒险开始了"])
           break;
       case "c":
           console.log("i am c touched")
+          SELETED = true
+          freshStr(["你选择了c，你无限估计背包，直接上路开始冒险了"])
           break;
       default :
           console.log("")   
@@ -134,20 +137,15 @@ const TypedReactHooks = () => {
       // const gameProgress = loadGame()
       const gameProgress = JSON.parse(localStorage.getItem("gameProgress"))
       console.log('progress:',gameProgress)
-      if(gameProgress.start==='no'){
-        const [showStr, listStr, aFunc,bFunc,cFunc] = getStart()
-        // typed.current.destroy()
-        // typed.current = showStr
-        freshStr([showStr])
+      if((gameProgress.start==='no')&& (SELETED===false)){
+        const [listStr, aFunc,bFunc,cFunc] = getStart()
+        console.log('ssl',listStr)
+        freshStr(listStr)
         console.log("get here")
-        // typed.current.reset()
-        // typed.current.destroy()
         // let listStra = ""
         // listStr.array.forEach(element => {
           // listStra = listStra + '<br/>'+element.content
         // });
-        // typed.current = listStra
-        // typed.current.reset()
       }
       
     // packageD.forEach(function(ele){

@@ -34,13 +34,14 @@ function useGameData() {
   // localStorage.setItem("gameProgress", JSON.stringify(_gameProgress))
   const getStart = () => {
     try {
-          const showStr = start.start_text
+          // const showStr = start.start_text
           const listStr= start.list
+          // console.log('gd',listStr)
           
           const aFunc = function(){}
           const bFunc = function(){}
           const cFunc = function(){}
-          return [showStr, listStr, aFunc,bFunc,cFunc]
+          return [listStr, aFunc,bFunc,cFunc]
         }catch (err) {
           console.log("Error: ", err)
           throw err
