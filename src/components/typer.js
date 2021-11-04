@@ -1,14 +1,21 @@
 import React, { useEffect, useRef, useState } from 'react';
 import Typed from 'typed.js';
-import packageD from '../game-data/package-base.json';
-import craft from '../game-data/craft.json';
+import useGameControl from "../hooks/game-progress"
+import useGameData from "../hooks/game-data"
+
+// import packageD from '../game-data/package-base.json';
+
 
 // interface property {str: string[]}
 // const props
 const str = [
     '`当你结束了一天疲惫的工作回到独居的家中，`<br/>`打开家门却意外地发现自己的爱犬 *DogName `<br/>`没有像往常一样晃着尾巴出现在门口迎接你。`<br/>`只见地上留了一张质地很古怪的便签：`<br/>很抱歉没办法提前告知，<br/>但哈迪斯大人要求我尽快将*DogName带回冥界。<br/>如您对此有任何意见，欢迎您拜访以下地址与哈迪斯大人当面沟通…… <br/>——塔纳托斯 <br/><font color="gray">按空格继续游戏 按q退出游戏</font>^2000',
   ]
-const TypedReactHooksDemo = () => {
+const TypedReactHooks = () => {
+
+  const [getCraft, getStart, getEvents, getBoss] = useGameData()
+  const [saveGame,loadGame] = useGameControl()
+
 	const el = React.useRef(null);
 	const typed = React.useRef(null);
     // const [fetchWalkerName] = useWalker({ web3 })
@@ -92,55 +99,73 @@ const TypedReactHooksDemo = () => {
   }
 
   const handleKeyPress = (event) => {
-      //check which event id now
-    //   console.log("pack",packageD.length)
-    // console.log(event.keyCode);
     setLastPressedKey(event.key);
-    // console.log("Now",walker)
     if((event.key).toString()==='q'){
-        // console.log("End game",walker)
         typed.current.destroy()
         typed.current = freshStr(["你按下了Q","退出游戏^1500"])
         typed.current.reset()
-        
+        return null
     }else{
         console.log("continue game")
-        if(event.keyCode==32){typed.current.destroy()}  
-        loopData(event) 
+        if(event.keyCode==32){
+          typed.current.destroy() 
+        }else{
+          typed.current.destroy() 
+          loopData(event) 
+        }
     } 
   };
   
   function loopData(event){
-    packageD.forEach(function(ele){
-      setEle(ele)
-        // console.log(ele)
-        console.log(ele.id)
-        typed.current.destroy()
-        // typed.current = makeStr(i)
-        // typed.current = freshStr(["sdfadf","sdfsdf"])
-        typed.current = freshStr(makeStr(ele))
-        typed.current.reset()
-        switch ((event.key).toString()) {
-            case "a":
-                // console.log(ele.pre_text)
-                // console.log(ele.start_text)
-                console.log(ele.id)
-                break;
-            case "b":
-                console.log("i am b touched")
-                break;
-            case "c":
-                console.log("i am c touched")
-                break;
-            default :
-                console.log("")   
-            }                                       
-            }) 
+    console.log(event.key)
+    switch ((event.key).toString()) {
+      case "a":
+          console.log('sssss',event.key)
+          break;
+      case "b":
+          console.log("i am b touched")
+          break;
+      case "c":
+          console.log("i am c touched")
+          break;
+      default :
+          console.log("")   
+      }    
+      // const gameProgress = loadGame()
+      const gameProgress = JSON.parse(localStorage.getItem("gameProgress"))
+      console.log('progress:',gameProgress)
+      if(gameProgress.start==='no'){
+        const [showStr, listStr, aFunc,bFunc,cFunc] = getStart()
+        // typed.current.destroy()
+        // typed.current = showStr
+        freshStr([showStr])
+        console.log("get here")
+        // typed.current.reset()
+        // typed.current.destroy()
+        // let listStra = ""
+        // listStr.array.forEach(element => {
+          // listStra = listStra + '<br/>'+element.content
+        // });
+        // typed.current = listStra
+        // typed.current.reset()
+      }
+      
+    // packageD.forEach(function(ele){
+    //   setEle(ele)
+    //     // console.log(ele)
+    //     console.log(ele.id)
+    //     typed.current.destroy()
+    //     // typed.current = makeStr(i)
+    //     // typed.current = freshStr(["sdfadf","sdfsdf"])
+    //     typed.current = freshStr(makeStr(ele))
+    //     typed.current.reset()
+                                       
+    //         }) 
   }
 
   function nextStr(){
     //   console.log(packageD.event_count)
-      console.log(craft[0])
+      // console.log(craft[0])
   }
 
   return (
@@ -149,13 +174,7 @@ const TypedReactHooksDemo = () => {
       <div className="type-wrap">
         <span style={{ whiteSpace: 'pre' }} ref={el} />
       </div>
-      {/* <button onClick={nextStr()}>get data</button><br /> */}
-      {/* <button onClick={() => typed.current.toggle()}>Toggle</button>
-      <button onClick={() => typed.current.start()}>Start</button>
-      <button onClick={() => typed.current.stop()}>Stop</button>
-      <button onClick={() => typed.current.reset()}>Reset</button>
-      <button onClick={() => typed.current.destroy()}>Destroy</button> */}
     </div>
   );
 }
-export default TypedReactHooksDemo;
+export default TypedReactHooks;

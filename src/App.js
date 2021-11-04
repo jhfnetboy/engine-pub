@@ -1,4 +1,4 @@
-import TypedReactHooksDemo from "./components/typer"
+import TypedReactHooks from "./components/typer"
 import useGameControl from "./hooks/game-progress"
 import './App.css';
 
@@ -31,7 +31,7 @@ function App() {
               </table>
         </span>
       <span id="react-root" className="text-white ml-40 mr-40 text-xl font-bold border-8 border-white">
-      <TypedReactHooksDemo />
+      <TypedReactHooks />
       </span>
       <span><table border="1">
             <tbody>
@@ -52,8 +52,7 @@ function App() {
             </table>
         </span>
         <div>
-        <button onClick={()=>saveGame()}>Start</button>
-        <button onClick={()=>saveGame()}>Stop</button>
+        <button onClick={()=>{window.location.reload()}}>Restart</button>
         </div>
       </header>
     </div>

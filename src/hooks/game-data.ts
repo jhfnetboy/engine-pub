@@ -1,5 +1,8 @@
 
-import { useState, useEffect } from "react";
+import start from '../game-data/start.json';
+import events from '../game-data/events.json';
+import boss from '../game-data/boss.json';
+import craft from '../game-data/craft.json';
 
 const _gameProgress = {
   "start": false, 
@@ -27,16 +30,46 @@ function getRandomEvents(diceTime: number,addNum: number){
 }
 
 function useGameData() {
-  const [gameProgress, setGameProgress] = useState(_gameProgress)
-  const [walker, setWalker] = useState(_events)
-  localStorage.setItem("myWalker", JSON.stringify(_events))
-  localStorage.setItem("gameProgress", JSON.stringify(_gameProgress))
+  // localStorage.setItem("myWalker", JSON.stringify(_events))
+  // localStorage.setItem("gameProgress", JSON.stringify(_gameProgress))
+  const getStart = () => {
+    try {
+          const showStr = start.start_text
+          const listStr= start.list
+          
+          const aFunc = function(){}
+          const bFunc = function(){}
+          const cFunc = function(){}
+          return [showStr, listStr, aFunc,bFunc,cFunc]
+        }catch (err) {
+          console.log("Error: ", err)
+          throw err
+        }
+    }
 
-useEffect(() => {
-  localStorage.setItem("myWalker", JSON.stringify(_events))
-  localStorage.setItem("gameProgress", JSON.stringify(_gameProgress))
-  }, [walker,gameProgress])
+    // start.forEach( function(ele){
+    //   // console.log(start.
+    // })
 
+    const pressStart=(event :KeyboardEvent, opFunc: Function)=>{
+      switch ((event.key).toString()) {
+        case "a":
+            // console.log(ele.pre_text)
+            // console.log(ele.start_text)
+            // console.log(ele.id)
+            break;
+        case "b":
+            console.log("i am b touched")
+            break;
+        case "c":
+            console.log("i am c touched")
+            break;
+        default :
+            console.log("")   
+        }                                       
+    
+    }
+  
 const getBoss = (walkerID:string) => {
   try {
       localStorage.getItem("walkerName",)
@@ -53,25 +86,12 @@ const getEvents = (gp: typeof _gameProgress) => {
   }
   try {
       localStorage.setItem("gameProgress", JSON.stringify(_gameProgress))
-      setGameProgress(gp)
         console.log("gameProgress to save: ", _gameProgress)
       } catch (err) {
         console.log("Error: ", err)
         throw err
       }
 }
-
-const getStart = () => {
-  try {
-      const gp = localStorage.getItem("gameProgress")
-        console.log("gameProgress to load: ", gp)
-        return JSON.parse(gp!)
-      } catch (err) {
-        console.log("Error: ", err)
-        throw err
-      }
-  }
-
 const getCraft = () => {
   try {
       const walker = localStorage.getItem("myWalker")

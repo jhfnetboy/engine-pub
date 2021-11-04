@@ -2,11 +2,11 @@
 import { useState, useEffect } from "react";
 
 const _gameProgress = {
-  "start": false, 
+  "start": "no", 
   "layer": 0, 
   "contribution": 0,
  "progress":"-",
- "boss":false
+ "boss":"no"
 }
 const _walker = {
     "STR": getAttribute(3,6),
