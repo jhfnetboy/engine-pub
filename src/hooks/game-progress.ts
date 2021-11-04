@@ -13,11 +13,17 @@ const _walker = {
     "LUK": getAttribute(3,6),
 }
 function getAttribute(diceTime: number,addNum: number){
-    const rNum = addNum + diceTime * (Math.floor((Math.random()*6)))
+    // const rNum = addNum + diceTime * (Math.floor((Math.random()*15)+3))
+    const rNum = addNum +  (Math.floor((Math.random()*15)))
      if((rNum)>3 && (rNum <=18)){
         return rNum;
      }else{
-        getAttribute(diceTime,addNum)
+      if(rNum<=20){
+        return rNum+3;
+      }else{
+        return 20
+      }
+        // getAttribute(diceTime,addNum)
      }
 }
 
