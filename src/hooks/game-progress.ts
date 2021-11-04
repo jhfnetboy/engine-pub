@@ -110,7 +110,7 @@ const loadGame = () => {
   try {
       const gp = localStorage.getItem("gameProgress")
         console.log("gameProgress to load: ", gp)
-        return gp
+        return JSON.parse(gp!)
       } catch (err) {
         console.log("Error: ", err)
         throw err
