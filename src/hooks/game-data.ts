@@ -28,12 +28,12 @@ function getRandomEvents(diceTime: number,addNum: number){
 
 function useGameData() {
   const [gameProgress, setGameProgress] = useState(_gameProgress)
-  const [walker, setWalker] = useState(_walker)
-  localStorage.setItem("myWalker", JSON.stringify(_walker))
+  const [walker, setWalker] = useState(_events)
+  localStorage.setItem("myWalker", JSON.stringify(_events))
   localStorage.setItem("gameProgress", JSON.stringify(_gameProgress))
 
 useEffect(() => {
-  localStorage.setItem("myWalker", JSON.stringify(_walker))
+  localStorage.setItem("myWalker", JSON.stringify(_events))
   localStorage.setItem("gameProgress", JSON.stringify(_gameProgress))
   }, [walker,gameProgress])
 
