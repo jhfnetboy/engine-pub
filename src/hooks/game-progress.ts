@@ -1,8 +1,12 @@
 
 import { useState, useEffect } from "react";
 
-const _gameProgress = {"start": false, "layer": 0, "contribution": 0,
- "progress":"-","boss":false
+const _gameProgress = {
+  "start": false, 
+  "layer": 0, 
+  "contribution": 0,
+ "progress":"-",
+ "boss":false
 }
 const _walker = {
     "STR": getAttribute(3,6),
@@ -19,7 +23,7 @@ function getAttribute(diceTime: number,addNum: number){
         return rNum;
      }else{
       if(rNum<=20){
-        return rNum+3;
+        return rNum-3;
       }else{
         return 20
       }
@@ -103,8 +107,12 @@ useEffect(() => {
 //       }
 // }
 const saveGame = (gp: typeof _gameProgress) => {
+  if(!gp){
+    gp = JSON.parse(localStorage.getItem("gameProgress")!)
+  }
   try {
       localStorage.setItem("gameProgress", JSON.stringify(_gameProgress))
+      setGameProgress(gp)
         console.log("gameProgress to save: ", _gameProgress)
       } catch (err) {
         console.log("Error: ", err)
