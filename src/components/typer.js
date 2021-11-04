@@ -87,16 +87,6 @@ const TypedReactHooks = () => {
         return typed.current
   }
 
-  function makeStr(ele){
-    // console.log("makeStr",ele)
-    // freshStr([packageD[i].list[0],packageD[i].list[1],packageD[i].list[2]])
-    const astr = []
-    astr.push(ele.start_text)
-    astr.push(ele.pre_text)
-    // ele.list.forEach(function (item){astr.push(item)})
-    console.log(astr)
-    return astr
-  }
 
   const handleKeyPress = (event) => {
     setLastPressedKey(event.key);
@@ -120,6 +110,17 @@ const TypedReactHooks = () => {
           console.log('you pressed ',event.key)
           SELETED = true
           freshStr(["你选择了a，不准备开启一段为小狗的冒险，游戏结束"])
+        //   saveGame({  "start": "yes", 
+        //   "layer": 0, 
+        //   "contribution": 0,
+        //  "progress":"-",
+        //  "boss":false})
+         localStorage.setItem("gameProgress",JSON.stringify({  "start": "yes", 
+         "layer": 0, 
+         "contribution": 0,
+        "progress":"-",
+        "boss":false}))
+         console.log('after select',localStorage.getItem("gameProgress"))
           break;
       case "b":
           console.log("i am b touched")
@@ -139,14 +140,20 @@ const TypedReactHooks = () => {
       console.log('progress:',gameProgress)
       if((gameProgress.start==='no')&& (SELETED===false)){
         const [listStr, aFunc,bFunc,cFunc] = getStart()
-        console.log('ssl',listStr)
         freshStr(listStr)
-        console.log("get here")
         // let listStra = ""
         // listStr.array.forEach(element => {
           // listStra = listStra + '<br/>'+element.content
         // });
       }
+      if((gameProgress.start==='yes')&& (SELETED===false)){
+        const [listStr, aFunc,bFunc,cFunc] = getStart()
+        freshStr(listStr)
+        // let listStra = ""
+        // listStr.array.forEach(element => {
+          // listStra = listStra + '<br/>'+element.content
+        // });
+      }      
       
     // packageD.forEach(function(ele){
     //   setEle(ele)

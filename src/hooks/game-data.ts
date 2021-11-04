@@ -5,11 +5,11 @@ import boss from '../game-data/boss.json';
 import craft from '../game-data/craft.json';
 
 const _gameProgress = {
-  "start": false, 
+  "start": "no", 
   "layer": 0, 
   "contribution": 0,
  "progress":"-",
- "boss":false
+ "boss":"no"
 }
 const _events = {
   getRandomEvents
