@@ -100,18 +100,21 @@ const TypedReactHooks = () => {
   };
 
   const handleKeyPress = (event) => {
+    const keyStr = (event.key).toString()
     setLastPressedKey(event.key);
-    if((event.key).toString()==='q'){
+    if(keyStr==='q'){
         typed.current.destroy()
         typed.current = freshStr(["你按下了Q","退出游戏^1500"])
         typed.current.reset()
         return null
     }else{
         console.log("continue game")
-        const keyIn = Key_filter.indexOf((event.key).toString())
+        const keyIn = Key_filter.indexOf(keyStr)
         if(keyIn>=0){
           typed.current.destroy() 
           loopData(event)         
+        }else{
+          loopData(event) 
         }
     } 
   };
