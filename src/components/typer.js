@@ -6,11 +6,11 @@ import useGameData from "../hooks/game-data"
 
 let SELETED = false
 let Allow_key_press = false
-let Key_filter = []
+let Key_filter = ["a","b","c"]
 // interface property {str: string[]}
 // const props
 const strBegin = [
-    '`当你结束了一天疲惫的工作回到独居的家中，`<br/>`打开家门却意外地发现自己的爱犬 *DogName `<br/>`没有像往常一样晃着尾巴出现在门口迎接你。`<br/>`只见地上留了一张质地很古怪的便签：`<br/>很抱歉没办法提前告知，<br/>但哈迪斯大人要求我尽快将*DogName带回冥界。<br/>如您对此有任何意见，欢迎您拜访以下地址与哈迪斯大人当面沟通…… <br/>——塔纳托斯 <br/><font color="gray">按 q退出游戏 其他任意键继续游戏 </font>^2000',
+    '`当你结束了一天疲惫的工作回到独居的家中，`<br/>`打开家门却意外地发现自己的爱犬 *DogName `<br/>`没有像往常一样晃着尾巴出现在门口迎接你。`<br/>`只见地上留了一张质地很古怪的便签：`<br/>很抱歉没办法提前告知，<br/>但哈迪斯大人要求我尽快将*DogName带回冥界。<br/>如您对此有任何意见，欢迎您拜访以下地址与哈迪斯大人当面沟通…… <br/>——塔纳托斯 <br/><font color="gray">按 q退出游戏 其他任意键继续游戏 </font>^1000',
   ]
 const TypedReactHooks = () => {
 
@@ -108,10 +108,11 @@ const TypedReactHooks = () => {
         return null
     }else{
         console.log("continue game")
-        // if(event.keyCode==32){
-          // typed.current.destroy() 
+        const keyIn = Key_filter.indexOf((event.key).toString())
+        if(keyIn>=0){
           typed.current.destroy() 
-          loopData(event) 
+          loopData(event)         
+        }
     } 
   };
   
