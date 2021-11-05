@@ -15,7 +15,7 @@
         "layer":2,    
         "type":"must",
         "repeat": false,
-        "start_text":"'很意外，第二层并不难找到，一个明显的拱形地下入口出现在道路尽头^2000'",
+        "start_text":"'第二层出现了，当你发现前面已经无路可走的时候，一个明显的拱形地下入口出现在道路尽头^2000'",
         "pre_attribute_require":{
             },
         "layer_chance":{

@@ -6,6 +6,7 @@ import useGameData from "../hooks/game-data"
 
 let SELETED = false
 let Allow_key_press = false
+let Key_filter = []
 // interface property {str: string[]}
 // const props
 const strBegin = [
