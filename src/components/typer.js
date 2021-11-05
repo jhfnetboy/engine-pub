@@ -5,16 +5,18 @@ import useGameData from "../hooks/game-data"
 // import packageD from '../game-data/package-base.json';
 
 let SELETED = false
+let Allow_key_press = false
 // interface property {str: string[]}
 // const props
-const str = [
+const strBegin = [
     '`当你结束了一天疲惫的工作回到独居的家中，`<br/>`打开家门却意外地发现自己的爱犬 *DogName `<br/>`没有像往常一样晃着尾巴出现在门口迎接你。`<br/>`只见地上留了一张质地很古怪的便签：`<br/>很抱歉没办法提前告知，<br/>但哈迪斯大人要求我尽快将*DogName带回冥界。<br/>如您对此有任何意见，欢迎您拜访以下地址与哈迪斯大人当面沟通…… <br/>——塔纳托斯 <br/><font color="gray">按 q退出游戏 其他任意键继续游戏 </font>^2000',
   ]
 const TypedReactHooks = () => {
 
-  const [getCraft, getStart, getEvents, getBoss] = useGameData()
+  const [getCraft, getStart, getLayers, getEvents, getBoss] = useGameData()
 	const el = React.useRef(null);
 	const typed = React.useRef(null);
+  
     // const [fetchWalkerName] = useWalker({ web3 })
     const [lastPressedKey, setLastPressedKey] = useState()
     const [ele, setEle] = useState()
@@ -42,23 +44,24 @@ const TypedReactHooks = () => {
          }
     }
     const [walker, setWalker] = useState(_walker)
-    const [currentStr, setCurrentStr] = useState(str)
+    const [currentStr, setCurrentStr] = useState(strBegin)
     const handleFetch = async () => {
         // fetchWalkerName(walkerID).then(setWalker).catch(showAppMsg)
       }
   React.useEffect(() => {
-    const options = {
-    // strings : getCurrentStr(),
-    strings : str,
-    typeSpeed: 30,
-    backSpeed: 0,
-    cursorChar: '_',
-    fadeOut: true,
-    shuffle: true,
-    };
+    // const options = {
+    // // strings : getCurrentStr(),
+    // strings : strBegin,
+    // typeSpeed: 30,
+    // backSpeed: 0,
+    // cursorChar: '_',
+    // fadeOut: true,
+    // shuffle: true,
+    // };
+    freshStr(strBegin)
     
-    typed.current = new Typed(el.current, options);
-    window.addEventListener("keydown", handleKeyPress);
+    // typed.current = new Typed(el.current, options);
+    window.addEventListener("keydown", handleKeyPressCheck);
 
     return () => {
       typed.current.destroy();
@@ -78,12 +81,22 @@ const TypedReactHooks = () => {
         cursorChar: '_',
         fadeOut: true,
         shuffle: true,
+        onComplete: function(self) {Allow_key_press= true},
         };
         
         typed.current = new Typed(el.current, options);
         return typed.current
+
   }
 
+  
+  const handleKeyPressCheck = (event) => {
+    if(Allow_key_press){
+      handleKeyPress(event)
+    }else{
+      console.log("Not allow key press now")
+    }
+  };
 
   const handleKeyPress = (event) => {
     setLastPressedKey(event.key);
@@ -102,14 +115,21 @@ const TypedReactHooks = () => {
   };
   
   function loopData(event){
-    if(SELETED===false){
+    const gameProgress = JSON.parse(localStorage.getItem("gameProgress"))
+    console.log('progress:',gameProgress)
+    const listMap = getLayers()
+    // console.log(listMap)
+    
+    if((gameProgress.start==='no')&& (SELETED===false)){
+        const [listStr] = getStart()
+        freshStr(listStr)
       switch ((event.key).toString()) {
         case "a":
             console.log('you pressed ',event.key)
             SELETED = true
             freshStr(["你选择了a，不准备开启一段为小狗的冒险，游戏结束"])
            localStorage.setItem("gameProgress",JSON.stringify({  "start": "yes", 
-           "layer": 0, 
+           "layer": 1, 
            "contribution": 0,
           "progress":"-",
           "boss":false}))
@@ -120,7 +140,7 @@ const TypedReactHooks = () => {
             SELETED = true
             freshStr(["你选择了b，你装备了你的帽子和风衣，冒险开始了"])
             localStorage.setItem("gameProgress",JSON.stringify({  "start": "yes", 
-            "layer": 0, 
+            "layer": 1, 
             "contribution": 0,
            "progress":"-",
            "boss":false}))
@@ -131,7 +151,7 @@ const TypedReactHooks = () => {
             SELETED = true
             freshStr(["你选择了c，你无限估计背包，直接上路开始冒险了"])
             localStorage.setItem("gameProgress",JSON.stringify({  "start": "yes", 
-            "layer": 0, 
+            "layer": 1, 
             "contribution": 0,
            "progress":"-",
            "boss":false}))
@@ -140,22 +160,11 @@ const TypedReactHooks = () => {
         default :
             console.log("")   
         }    
-  
     }
-      // const gameProgress = loadGame()
-      const gameProgress = JSON.parse(localStorage.getItem("gameProgress"))
-      console.log('progress:',gameProgress)
-      if((gameProgress.start==='no')&& (SELETED===false)){
-        const [listStr, aFunc,bFunc,cFunc] = getStart()
-        freshStr(listStr)
-        // let listStra = ""
-        // listStr.array.forEach(element => {
-          // listStra = listStra + '<br/>'+element.content
-        // });
-      }
-      if((gameProgress.start==='yes')&& (SELETED===false)){
-        const [listStr, aFunc,bFunc,cFunc] = getStart()
-        freshStr(listStr)
+
+      if((gameProgress.start==='yes')&& (SELETED===false)&&(gameProgress.layer===1)){
+        console.log(listMap[0])
+        // freshStr([listMap[0]["start_text"]])
         // let listStra = ""
         // listStr.array.forEach(element => {
           // listStra = listStra + '<br/>'+element.content

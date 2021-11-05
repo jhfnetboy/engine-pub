@@ -1,0 +1,42 @@
+[{
+    "layer":1,    
+    "type":"must",
+    "repeat": false,
+    "start_text":"'`令人意外的是便签上的地址并不难找，<br/>看上去似乎是个已经废弃许久的地下建筑。`,<br/>`你走了进去，光线非常微弱，几乎看不到什么东西，<br/>只能听见远处有湍急的水流声。`^2000'",
+    "pre_attribute_require":{
+        },
+    "layer_chance":{
+        },
+    "happen_rate": "must",
+    "pre_event_require":[],
+    "pre_craft_reuqire":[]
+    },
+    {
+        "layer":2,    
+        "type":"must",
+        "repeat": false,
+        "start_text":"'很意外，第二层并不难找到，一个明显的拱形地下入口出现在道路尽头^2000'",
+        "pre_attribute_require":{
+            },
+        "layer_chance":{
+            },
+        "happen_rate": "must",
+        "pre_event_require":[],
+        "pre_craft_reuqire":[]
+    },
+    {
+        "layer":3,    
+        "type":"must",
+        "repeat": false,
+        "start_text":"'穿过一片溶洞，在滴滴答答的水声中，你看到了隐约隐藏在水幕后的第三层入口，地面湿滑，布满了青苔^2000'",
+        "pre_attribute_require":{
+            },
+        "layer_chance":{
+            },
+        "happen_rate": "must",
+        "pre_event_require":[],
+        "pre_craft_reuqire":[]
+    }
+          
+      
+]

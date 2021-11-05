@@ -1,5 +1,6 @@
 
 import start from '../game-data/start.json';
+import layers from '../game-data/layers.json';
 import events from '../game-data/events.json';
 import boss from '../game-data/boss.json';
 import craft from '../game-data/craft.json';
@@ -81,17 +82,35 @@ const getBoss = (walkerID:string) => {
         throw err
       }
 }
-const getEvents = (gp: typeof _gameProgress) => {
-  if(!gp){
-    gp = JSON.parse(localStorage.getItem("gameProgress")!)
-  }
+const getLayers = () => {
   try {
-      localStorage.setItem("gameProgress", JSON.stringify(_gameProgress))
-        console.log("gameProgress to save: ", _gameProgress)
-      } catch (err) {
-        console.log("Error: ", err)
-        throw err
-      }
+      // const showStr = start.start_text
+      const listMap= layers.map(l=>({layer:l.layer,start_text:l.start_text}))
+      // console.log('gd',listStr)
+      
+      // const aFunc = function(){}
+      // const bFunc = function(){}
+      // const cFunc = function(){}
+      return [listMap]
+    }catch (err) {
+      console.log("Error: ", err)
+      throw err
+    }
+}
+const getEvents = (gp: typeof _gameProgress) => {
+  try {
+      // const showStr = start.start_text
+      const listStr= start.list
+      // console.log('gd',listStr)
+      
+      const aFunc = function(){}
+      const bFunc = function(){}
+      const cFunc = function(){}
+      return [listStr, aFunc,bFunc,cFunc]
+    }catch (err) {
+      console.log("Error: ", err)
+      throw err
+    }
 }
 const getCraft = () => {
   try {
@@ -103,7 +122,7 @@ const getCraft = () => {
         throw err
       }
   }
-return [getCraft, getStart, getEvents, getBoss] as const
+return [getCraft, getStart, getLayers, getEvents, getBoss] as const
 }
 
 export default useGameData
