@@ -74,6 +74,7 @@ const TypedReactHooks = () => {
   }
 
   function freshStr(newStr){
+    console.log("now fresh this",newStr)
     const options = {
         // strings : getCurrentStr(),
         strings : newStr,
@@ -111,7 +112,7 @@ const TypedReactHooks = () => {
         console.log("continue game")
         const keyIn = Key_filter.indexOf(keyStr)
         if((keyIn>=0)||(event.keyCode===32)){
-          console.log("enter",keyIn)
+          // console.log("enter",keyIn)
           typed.current.destroy() 
           loopData(event)         
         }else{
@@ -121,26 +122,33 @@ const TypedReactHooks = () => {
   };
   
   function loopData(event){
+    console.log("loop in")
     const gameProgress = JSON.parse(localStorage.getItem("gameProgress"))
     console.log('progress:',gameProgress)
+    console.log("selected",SELETED)
+
+  //   localStorage.setItem("gameProgress",JSON.stringify({  "start": "yes", 
+  //   "layer": 1, 
+  //   "contribution": 0,
+  //  "progress":"-",
+  //  "boss":false}))
+  //   console.log('after select',localStorage.getItem("gameProgress"))
+
     const listMap = getLayers()
     // console.log(listMap)
     
     if((gameProgress.start==='no')&& (SELETED===false)){
+      if(event.keyCode===32){
         const [listStr] = getStart()
         freshStr(listStr)
+      }  
       switch ((event.key).toString()) {
         case "a":
             console.log('you pressed ',event.key)
             SELETED = true
             freshStr(["你选择了a，不准备开启一段为小狗的冒险，游戏结束"])
-           localStorage.setItem("gameProgress",JSON.stringify({  "start": "yes", 
-           "layer": 1, 
-           "contribution": 0,
-          "progress":"-",
-          "boss":false}))
-           console.log('after select',localStorage.getItem("gameProgress"))
             break;
+            return null
         case "b":
             console.log("i am b touched")
             SELETED = true
@@ -155,7 +163,7 @@ const TypedReactHooks = () => {
         case "c":
             console.log("i am c touched")
             SELETED = true
-            freshStr(["你选择了c，你无限估计背包，直接上路开始冒险了"])
+            freshStr(["你选择了c，你无暇顾及背包，直接上路开始冒险了"])
             localStorage.setItem("gameProgress",JSON.stringify({  "start": "yes", 
             "layer": 1, 
             "contribution": 0,
