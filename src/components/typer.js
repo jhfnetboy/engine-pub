@@ -217,7 +217,11 @@ const TypedReactHooks = () => {
 
   return (
     <div className="wrap">
-      <span><table border="1">
+      <h1>What the hell?</h1>
+      <div className="type-wrap">
+        <span style={{ whiteSpace: 'pre' }} ref={el} />
+      </div>
+      <table border="1">
           <tbody>
               <tr>
               <td>STR</td>
@@ -237,14 +241,25 @@ const TypedReactHooks = () => {
               </tr>
           </tbody>              
               </table>
+              <span><table border="1">
+            <tbody>
+              <tr>
+              <td>Start</td>
+              <td>Layer</td>
+              <td>Contribution</td>
+              <td>BOSS</td>                           
+              </tr>
+              <tr>
+              <td>{gameProgress.start}</td>
+              <td>{gameProgress.layer}</td>
+              <td>{gameProgress.contribution}</td>
+              <td>{gameProgress.boss}</td>                     
+              </tr>
+              <tr><td>Progress</td><td colSpan={3}>{gameProgress.progress}</td></tr>
+              </tbody>
+            </table>
         </span>
 
-
-      <br/>{gameProgress.start}
-      <h1>What the hell?</h1>
-      <div className="type-wrap">
-        <span style={{ whiteSpace: 'pre' }} ref={el} />
-      </div>
     </div>
   );
 }
