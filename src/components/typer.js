@@ -35,16 +35,28 @@ const TypedReactHooks = () => {
         "CHA": getAttribute(3,6),
         "LUK": getAttribute(3,6),
     }
-
-    function getAttribute(diceTime,addNum){
-        const rNum = addNum + diceTime * (Math.floor((Math.random()*3)))
-         if((rNum)>3 && (rNum <=18)){
-            return rNum;
-         }else{
-            getAttribute(diceTime,addNum)
-         }
+    const _gameProgress = {  "start": "no", 
+      "layer": 1, 
+       "contribution": 0,
+      "progress":"-",
+      "boss":false
+    }
+    function getAttribute(diceTime, addNum){
+      // const rNum = addNum + diceTime * (Math.floor((Math.random()*15)+3))
+      const rNum = addNum +  (Math.floor((Math.random()*15)))
+       if((rNum)>3 && (rNum <=18)){
+          return rNum;
+       }else{
+        if(rNum<=20){
+          return rNum-3;
+        }else{
+          return 20
+        }
+          // getAttribute(diceTime,addNum)
+       }
     }
     const [walker, setWalker] = useState(_walker)
+    const [gameProgress, setGameProgress] = useState(_gameProgress)
     const [currentStr, setCurrentStr] = useState(strBegin)
     const handleFetch = async () => {
         // fetchWalkerName(walkerID).then(setWalker).catch(showAppMsg)
@@ -142,6 +154,12 @@ const TypedReactHooks = () => {
         const [listStr] = getStart()
         freshStr(listStr)
       }  
+      const gp = {  "start": "yes", 
+        "layer": 1, 
+        "contribution": 0,
+        "progress":"-",
+        "boss":false
+      }
       switch ((event.key).toString()) {
         case "a":
             console.log('you pressed ',event.key)
@@ -153,22 +171,16 @@ const TypedReactHooks = () => {
             console.log("i am b touched")
             SELETED = true
             freshStr(["你选择了b，你装备了你的帽子和风衣，冒险开始了"])
-            localStorage.setItem("gameProgress",JSON.stringify({  "start": "yes", 
-            "layer": 1, 
-            "contribution": 0,
-           "progress":"-",
-           "boss":false}))
+            localStorage.setItem("gameProgress",JSON.stringify(gp))
+           setGameProgress(gp)
             console.log('after select',localStorage.getItem("gameProgress"))          
             break;
         case "c":
             console.log("i am c touched")
             SELETED = true
             freshStr(["你选择了c，你无暇顾及背包，直接上路开始冒险了"])
-            localStorage.setItem("gameProgress",JSON.stringify({  "start": "yes", 
-            "layer": 1, 
-            "contribution": 0,
-           "progress":"-",
-           "boss":false}))
+            localStorage.setItem("gameProgress",JSON.stringify(gp))
+            setGameProgress(gp)
             console.log('after select',localStorage.getItem("gameProgress"))          
             break;
         default :
@@ -205,6 +217,30 @@ const TypedReactHooks = () => {
 
   return (
     <div className="wrap">
+      <span><table border="1">
+          <tbody>
+              <tr>
+              <td>STR</td>
+              <td>DEX</td>
+              <td>CON</td>
+              <td>INT</td>
+              <td>CHA</td>
+              <td>LUC</td>                            
+              </tr>
+              <tr>
+              <td>{walker.STR}</td>
+              <td>{walker.DEX}</td>
+              <td>{walker.CON}</td>
+              <td>{walker.INT}</td>
+              <td>{walker.CHA}</td>
+              <td>{walker.LUK}</td>                            
+              </tr>
+          </tbody>              
+              </table>
+        </span>
+
+
+      <br/>{gameProgress.start}
       <h1>What the hell?</h1>
       <div className="type-wrap">
         <span style={{ whiteSpace: 'pre' }} ref={el} />
