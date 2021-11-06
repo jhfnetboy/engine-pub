@@ -1,5 +1,5 @@
 import TypedReactHooks from "./components/typer"
-import useGameControl from "./hooks/game-progress"
+// import useGameControl from "./hooks/game-progress"
 import './App.css';
 
 function App() {

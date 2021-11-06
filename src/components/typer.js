@@ -34,6 +34,7 @@ const TypedReactHooks = () => {
         "INT": getAttribute(3,6),
         "CHA": getAttribute(3,6),
         "LUK": getAttribute(3,6),
+        "HP": 20,
     }
     const _gameProgress = {  "start": "no", 
       "layer": 1, 
@@ -72,6 +73,8 @@ const TypedReactHooks = () => {
     // shuffle: true,
     // };
     freshStr(strBegin)
+    localStorage.setItem("myWalker", JSON.stringify(_walker))
+    localStorage.setItem("gameProgress", JSON.stringify(_gameProgress))
     
     // typed.current = new Typed(el.current, options);
     window.addEventListener("keydown", handleKeyPressCheck);
@@ -151,6 +154,7 @@ const TypedReactHooks = () => {
     
     if((gameProgress.start==='no')&& (SELETED===false)){
       if(event.keyCode===32){
+        console.log('32')
         const [listStr] = getStart()
         freshStr(listStr)
       }  
@@ -229,7 +233,8 @@ const TypedReactHooks = () => {
               <td>CON</td>
               <td>INT</td>
               <td>CHA</td>
-              <td>LUC</td>                            
+              <td>LUC</td>       
+              <td>H P</td>                     
               </tr>
               <tr>
               <td>{walker.STR}</td>
@@ -237,7 +242,8 @@ const TypedReactHooks = () => {
               <td>{walker.CON}</td>
               <td>{walker.INT}</td>
               <td>{walker.CHA}</td>
-              <td>{walker.LUK}</td>                            
+              <td>{walker.LUK}</td> 
+              <td>{walker.HP}</td>                            
               </tr>
           </tbody>              
               </table>
