@@ -34,7 +34,7 @@ const TypedReactHooks = () => {
         "INT": getAttribute(3,6),
         "CHA": getAttribute(3,6),
         "LUK": getAttribute(3,6),
-        "HP": 20,
+        "HP": 100,
     }
     const _gameProgress = {  "start": "no", 
       "layer": 1, 
